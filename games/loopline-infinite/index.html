@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#a0d1f4">
+  <meta name="description" content="Loopline Infinite — endless procedurally generated, verified-winnable bus sorting levels. No AI generation.">
+  <title>Loopline Infinite — Bus Sorting Puzzle</title>
+  <style>:root{font-family:ui-rounded,"SF Pro Rounded",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1a3455;background:#c2d5ee;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}body{margin:0;min-height:100vh;background:radial-gradient(circle at 20% 0,#f4f7ff 0,#c6dff8 55%,#9cbcd7 100%);overflow-x:hidden}.app{width:min(100%,560px);min-height:100dvh;margin:auto;position:relative;background:linear-gradient(180deg,#9ed1fa 0%,#dce8f5 36%,#cad9ef 100%);box-shadow:0 0 65px #1737562d;display:flex;flex-direction:column;isolation:isolate;overflow:hidden}.app:before{content:"";position:absolute;top:0;left:0;right:0;height:210px;background:repeating-linear-gradient(88deg,transparent 0 30px,#ffffff13 30px 33px);pointer-events:none}.topbar{height:80px;padding:12px 16px 7px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5}.brand{font-size:11px;font-weight:950;letter-spacing:.19em;color:#144b83;background:#f5fbffbb;padding:7px 10px;border-radius:13px;box-shadow:0 3px 0 #a3c9e4}.title-wrap{text-align:center}.level-tag{font-size:11px;font-weight:900;letter-spacing:.2em;color:#426d9a}.level-control{display:flex;gap:6px;justify-content:center;align-items:center}.level-control button{border:0;background:#ffffffc5;color:#2d6f9d;border-radius:11px;width:30px;height:31px;font-size:20px;font-weight:1000;box-shadow:0 3px 0 #87afd0}.level-control .level-number{font-size:28px;font-weight:1000;letter-spacing:-.065em;color:white;text-shadow:0 3px 0 #327ab2,0 4px 10px #0c3b7850;background:none;width:auto;padding:0 3px;line-height:1}.little-pill{border-radius:14px;color:#18568c;background:#e9f6ffdf;box-shadow:0 3px 0 #99bfde;padding:7px 9px;text-align:center;font-size:10px;font-weight:850;min-width:62px}.little-pill b{display:block;font-size:16px}.scene{height:206px;position:relative;flex:none;overflow:hidden;z-index:1}.skyline{position:absolute;inset:15px 0 auto;height:100px;opacity:.23;background:linear-gradient(90deg,transparent 0 3%,#2663ab 3% 9%,transparent 9% 13%,#2663ab 13% 23%,transparent 23% 28%,#2663ab 28% 34%,transparent 34% 39%,#2663ab 39% 44%,transparent 44% 51%,#2663ab 51% 65%,transparent 65% 72%,#2663ab 72% 78%,transparent 78% 84%,#2663ab 84% 94%,transparent 94%) bottom/100% 62px no-repeat}.loop-outer{position:absolute;left:-13%;top:-118px;width:126%;height:285px;border:30px solid #606f91;border-radius:50%;background:linear-gradient(180deg,#bad5e3,#ebf7fc);box-shadow:inset 0 0 0 4px #a1b7c9,0 7px 0 #3d4e77,0 12px 20px #253f6320}.loop-outer:after{content:"";position:absolute;inset:-22px;border:2px dashed #d6e9fb99;border-radius:50%;pointer-events:none}.people{position:absolute;inset:0;z-index:3;pointer-events:none}.person{position:absolute;width:9px;height:9px;border-radius:50%;box-shadow:0 2px 0 #354d7869,0 0 0 1px #ffffff65;will-change:transform}.gate{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;z-index:4}.gate-label{padding:3px 9px;border-radius:8px;font-size:10px;font-weight:1000;letter-spacing:.07em;color:#17466f;background:#ffffffd9;box-shadow:0 3px 0 #8dacd0}.gate-pole{height:19px;width:4px;background:#5d729a}.gate-bar{width:95px;height:9px;background:repeating-linear-gradient(90deg,#eff7ff 0 12px,#43b9e6 12px 21px);border:2px solid #375d82;border-radius:4px;box-shadow:0 2px 0 #22395f}.scene-info{position:absolute;bottom:4px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center;z-index:4;font-size:11px;font-weight:850;color:#2d517d;text-shadow:0 1px #ffffff}.scene-info .tag{background:#ecf7fff2;padding:4px 7px;border-radius:8px;box-shadow:0 2px 0 #99b8d4}.loading-platform{flex:none;position:relative;z-index:4;background:linear-gradient(180deg,#a1b6d1 0,#778aaa 10%,#7c87a4 90%,#64789a 100%);border-top:6px solid #cbdaf0;border-bottom:7px solid #f7fbff;box-shadow:0 -3px 7px #34547355,0 5px 11px #34547338;padding:12px 10px 8px}.platform-head{color:#e5f3ff;text-shadow:0 2px #526484;font-size:11px;font-weight:1000;letter-spacing:.1em;margin-bottom:8px;display:flex;justify-content:space-between}.bays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.bay{height:58px;border:2px solid #b5cce4;border-top:0;border-radius:5px 5px 10px 10px;transform:skewX(-6deg);position:relative;background:linear-gradient(180deg,#546782,#6c7e9a);box-shadow:inset 0 -4px 0 #b7cde4;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center}.bay.empty:before{content:"";position:absolute;inset:4px 8px 18px;border-left:1px dashed #e7f4ff8c;border-right:1px dashed #e7f4ff8c}.bay.locked{border-style:dashed;border-color:#d5dbec55;background:#59658088;color:#c2d7ea}.bay .plus{color:#78e583;font-size:24px;font-weight:1000;text-shadow:0 2px #325d4c}.bay .bay-bus{width:85%;height:27px;border-radius:8px 8px 4px 4px;background:var(--buscolor);border:2px solid #23345482;box-shadow:inset 0 5px #ffffff4b,0 2px #26345088;display:flex;flex-direction:column;justify-content:center;align-items:center;transform:skewX(6deg);position:relative}.bay .bay-bus:after{content:"";position:absolute;inset:6px 4px 8px;border-radius:3px;background:repeating-linear-gradient(90deg,#f1fcffb6 0 4px,transparent 4px 8px)}.bay .bay-count{position:relative;color:white;font-size:11px;font-weight:1000;text-shadow:0 1px 3px #153059,0 1px 3px #153059;z-index:2;transform:skewX(6deg)}.bay .bay-size{color:#eef9ff;font-size:9px;text-shadow:0 2px #3b5484;z-index:1;transform:skewX(6deg);margin-top:3px}.bay .plus-label{font-size:8px;letter-spacing:.03em;color:#e6f4ff;text-align:center;font-weight:800}.bay.ready .bay-bus{animation:ready .3s ease-in-out infinite alternate}@keyframes ready{to{transform:skewX(6deg) translateY(-4px)}}.yard-head{display:flex;justify-content:space-between;align-items:center;padding:9px 16px 5px;color:#345577;font-size:12px;font-weight:900}.yard-head strong{font-size:14px;color:#1a4775}.yard-head .mini-info{font-weight:850;color:#567898;font-size:11px}.yard{position:relative;background:linear-gradient(180deg,#c7d7ea,#b9cce1);border-top:2px solid #eaf5ff;border-bottom:1px solid #a6c5e1;box-shadow:inset 0 2px 7px #90a7c4ad}.lot{position:relative;margin:0 8px 7px;width:calc(100% - 16px);background:repeating-linear-gradient(0deg,#b6c5d6 0 28px,#b1bfd3 28px 29px);border-radius:8px;overflow:hidden;touch-action:manipulation}.lot:after{content:"";pointer-events:none;position:absolute;left:0;right:0;bottom:45px;border-top:3px dashed #e4effb87}.lot .vehicle{position:absolute;box-sizing:border-box;border-radius:6px;background:var(--buscolor);border:1.5px solid #2d3a5ca5;box-shadow:inset 0 3px #ffffff72,inset 0 -3px #1e2a3752,0 2px 0 #40536e99,0 3px 4px #344c7155;display:flex;align-items:center;justify-content:space-around;padding:0;overflow:hidden;transition:filter .18s,transform .18s;will-change:transform}.lot .vehicle:before{content:"";position:absolute;left:21%;top:3px;right:21%;height:7px;background:repeating-linear-gradient(90deg,#dbf5ffdd 0 7px,#486a96 7px 9px);border-radius:2px;opacity:.9}.lot .vehicle:after{content:"";position:absolute;left:18%;bottom:1px;width:12%;height:3px;border-radius:5px;background:#eaf8ffcc;box-shadow:21px 0 #eaf8ffcc}.lot .vehicle .arr{position:relative;z-index:3;color:white;font-weight:1000;font-size:14px;line-height:1;text-shadow:0 1px #274a6d,0 -1px #274a6d}.lot .vehicle .cap{position:relative;z-index:3;font-size:9px;color:white;font-weight:1000;text-shadow:0 2px #244c70,0 -1px #244c70}.lot .vehicle.vertical{border-radius:5px 5px 9px 9px;box-shadow:inset 0 4px #ffffff64,0 3px #344862cc;flex-direction:column}.lot .vehicle.vertical:before{top:12%;left:3px;right:3px;height:12px;background:#dff6ffbb}.lot .vehicle.vertical .arr{font-size:13px}.lot .vehicle.vertical .cap{font-size:8px}.lot .vehicle.blocked{filter:grayscale(.55) brightness(.84)}.lot .vehicle.legal{cursor:pointer}.lot .vehicle.legal:active{transform:scale(.94)!important}.lot .vehicle.suggested{outline:3px solid #fff457;outline-offset:1px;filter:brightness(1.18);animation:hintPulse .7s ease-in-out infinite alternate}@keyframes hintPulse{to{box-shadow:0 0 17px 6px #ffed80,inset 0 2px #ffffff}}.lot .vehicle.shake{animation:shake .28s linear 1}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}.lot .vertical-zone{position:absolute;left:0;right:0;bottom:0;height:45px;background:repeating-linear-gradient(90deg,#d0ddeab9 0 2px,#96adc916 2px calc(100% / 16));border-top:3px dashed #deeaf5a6}.help-text{margin:6px 12px 0;color:#405a7d;font-size:11px;font-weight:750;text-align:center;min-height:24px}.controls{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:5px 12px 9px}.control{height:57px;border:2px solid #f2f9ff;border-radius:19px;box-shadow:0 4px 0 #6c93c8,0 6px 12px #39689a38;background:linear-gradient(180deg,#f5fdff,#d2e9ff);color:#2c5f95;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1px;font-weight:1000;font-size:10px;text-shadow:0 1px #fff}.control .glyph{font-size:24px;line-height:1}.control.primary{background:linear-gradient(180deg,#7cecbf,#38ba90);color:#104d40;box-shadow:0 4px 0 #278c70,0 5px 8px #39689a38}.control.amber{background:linear-gradient(180deg,#ffe886,#f4b841);color:#845519;box-shadow:0 4px 0 #b77a21}.control:disabled{opacity:.5;filter:grayscale(.5);cursor:default}.bottomline{padding:5px 14px 13px;display:flex;justify-content:space-between;align-items:center;gap:8px;color:#557392;font-size:10px;font-weight:800}.bottomline .proof{background:#ffffffa6;border:1px solid #96c8be;border-radius:20px;padding:6px 9px;color:#27745b;white-space:nowrap}.bottomline .proof b{color:#15925b}.bottomline .seed{max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.toast{position:absolute;left:18px;right:18px;top:86px;z-index:35;padding:12px 14px;border-radius:15px;background:#183b66f2;box-shadow:0 5px 0 #0c254c7c,0 15px 30px #14345455;color:white;text-align:center;font-size:13px;font-weight:800;opacity:0;pointer-events:none;transform:translateY(-10px);transition:opacity .16s,transform .16s}.toast.show{opacity:1;transform:translateY(0)}.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#1635579a;z-index:50;backdrop-filter:blur(5px)}.overlay[hidden]{display:none}.modal{width:min(calc(100% - 42px),380px);background:linear-gradient(180deg,#fff,#d7edfe);border:4px solid #fff;border-radius:27px;box-shadow:0 10px 0 #7ba0c6,0 21px 45px #10386766;padding:22px 21px 23px;text-align:center;color:#214f80}.modal h2{font-size:26px;margin:2px 0 7px;color:#1d5c91}.modal p{margin:9px 0 15px;font-size:13px;line-height:1.5}.modal .trophy{font-size:56px}.modal button{border:0;border-radius:14px;background:#47bd8b;color:white;font-weight:900;font-size:15px;box-shadow:0 4px 0 #1d8761;padding:13px 17px}.modal .secondary{background:#daeefa;color:#38678e;box-shadow:0 4px 0 #91b4d0}.modal .buttons{display:flex;justify-content:center;gap:9px;margin-top:12px}.modal input{width:100%;margin:8px 0 2px;border:2px solid #a8c8e2;border-radius:12px;padding:12px;font-size:22px;font-weight:900;color:#255b8b;text-align:center;background:white;outline:none}.legend{display:flex;justify-content:center;gap:15px;font-size:11px;font-weight:850;color:#547494;margin:8px}.legend span{display:flex;align-items:center;gap:5px}.dot{width:10px;height:10px;border-radius:50%;display:inline-block}.hidden{display:none!important}@media (max-width:390px){.topbar{height:72px;padding:9px 12px}.brand{font-size:9px;padding:6px 8px}.scene{height:180px}.loop-outer{height:267px;top:-119px}.loading-platform{padding:9px 7px 8px}.bay{height:51px}.yard-head{padding:6px 12px}.controls{gap:6px;padding:4px 9px}.control{height:54px}.bottomline{padding:4px 9px 7px}}@media (max-height:750px){.scene{height:158px}.loop-outer{height:245px;top:-117px}.topbar{height:65px}.loading-platform{padding:7px 9px}.bay{height:45px}.control{height:50px}.help-text{margin-top:2px}.bottomline{padding:3px 12px 7px}}@media (prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+</style>
+</head>
+<body>
+  <main class="app" id="app">
+    <header class="topbar">
+      <div class="brand">♾️ LOOPLINE<br>INFINITE</div>
+      <div class="title-wrap">
+        <div class="level-tag">PROCEDURAL LEVEL</div>
+        <div class="level-control">
+          <button id="prevLevel" title="Previous level" aria-label="Previous level">‹</button>
+          <button id="levelPicker" class="level-number" title="Jump to a level">35</button>
+          <button id="nextLevel" title="Next level" aria-label="Next level">›</button>
+        </div>
+      </div>
+      <div class="little-pill">BUSES LEFT <b id="busesRemaining">—</b></div>
+    </header>
+    <section class="scene" id="scene" aria-label="Circulating passenger queue">
+      <div class="skyline"></div>
+      <div class="loop-outer"></div>
+      <div class="people" id="people" aria-hidden="true"></div>
+      <div class="gate"><div class="gate-label">BOARDING GATE</div><div class="gate-pole"></div><div class="gate-bar"></div></div>
+      <div class="scene-info"><div class="tag">👥 WAITING <span id="waiting">—</span></div><div class="tag">✓ BOARDED <span id="boarded">0</span></div></div>
+    </section>
+    <section class="loading-platform" aria-label="Bus loading bays">
+      <div class="platform-head"><span>LOADING BAYS</span><span id="baysInfo">5 / 7 OPEN</span></div>
+      <div class="bays" id="bays"></div>
+    </section>
+    <div class="yard-head"><strong>DISPATCH YARD</strong><div class="mini-info"><span id="movesLabel">0</span> dispatched • <span id="directionHint">↻</span> next turn</div></div>
+    <section class="yard"><div class="lot" id="lot" aria-label="Bus parking lot"><div class="vertical-zone"></div></div></section>
+    <p class="help-text" id="helpText">Tap an unblocked bus to dispatch it. Every departure flips the other buses.</p>
+    <nav class="controls" aria-label="Game controls">
+      <button class="control" id="undo"><span class="glyph">↶</span><span>UNDO</span></button>
+      <button class="control amber" id="hint"><span class="glyph">💡</span><span>HINT</span></button>
+      <button class="control" id="restart"><span class="glyph">⟳</span><span>RESTART</span></button>
+      <button class="control primary" id="speed"><span class="glyph">▶</span><span id="speedLabel">SPEED 1×</span></button>
+    </nav>
+    <div class="bottomline"><span class="proof">✓ <b>WIN PATH VERIFIED</b></span><span class="seed">SEED <span id="seed">—</span> • NO AI</span></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="overlay" id="modalOverlay" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="trophy" id="modalIcon">🏆</div>
+        <h2 id="modalTitle">Level complete!</h2>
+        <p id="modalCopy">All passengers aboard.</p>
+        <div class="buttons" id="modalButtons"></div>
+      </div>
+    </div>
+  </main>
+  <script>/* Loopline Infinite — deterministic constructive puzzle generator.
+   No network calls, generative AI, or random-by-time behavior.
+   Every generated puzzle carries a replayable legal solution certificate. */
+(function (root, factory) {
+  const engine = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = engine;
+  root.LooplineEngine = engine;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+
+  const COLORS = Object.freeze([
+    { id:'red',    hex:'#ef3858', name:'Coral' },
+    { id:'blue',   hex:'#2599f5', name:'Blue' },
+    { id:'green',  hex:'#74dd4a', name:'Lime' },
+    { id:'orange', hex:'#f79435', name:'Orange' },
+    { id:'yellow', hex:'#ffd24a', name:'Yellow' },
+    { id:'purple', hex:'#a94bea', name:'Purple' },
+    { id:'pink',   hex:'#f653b6', name:'Pink' },
+    { id:'cyan',   hex:'#33dce4', name:'Cyan' },
+    { id:'brown',  hex:'#9e533a', name:'Brown' },
+  ]);
+
+  function xmur3(str) {
+    let h = 1779033703 ^ str.length;
+    for (let i = 0; i < str.length; i++) {
+      h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+      h = h << 13 | h >>> 19;
+    }
+    return function () {
+      h = Math.imul(h ^ h >>> 16, 2246822507);
+      h = Math.imul(h ^ h >>> 13, 3266489909);
+      return (h ^= h >>> 16) >>> 0;
+    };
+  }
+
+  function sfc32(a,b,c,d) {
+    return function () {
+      a >>>= 0; b >>>= 0; c >>>= 0; d >>>= 0;
+      let t = (a + b) | 0;
+      a = b ^ b >>> 9;
+      b = c + (c << 3) | 0;
+      c = c << 21 | c >>> 11;
+      d = d + 1 | 0;
+      t = t + d | 0;
+      c = c + t | 0;
+      return (t >>> 0) / 4294967296;
+    };
+  }
+
+  function createRng(seed) {
+    const h = xmur3(seed);
+    const next = sfc32(h(),h(),h(),h());
+    return {
+      float:next,
+      int(min,max) { return min + Math.floor(next() * (max - min + 1)); },
+      choice(arr) { return arr[Math.floor(next() * arr.length)]; },
+      shuffle(arr) {
+        for(let i=arr.length-1;i>0;i--) {
+          const j=Math.floor(next()*(i+1));
+          [arr[i],arr[j]]=[arr[j],arr[i]];
+        }
+        return arr;
+      }
+    };
+  }
+
+  function levelNumber(value) {
+    const v=String(value).trim();
+    if (!/^\d+$/.test(v)) throw new Error('Level number must be a positive integer');
+    const bigint = BigInt(v);
+    if (bigint < 35n) throw new Error('This infinite expansion begins at Level 35');
+    return bigint.toString();
+  }
+
+  function bumpLevel(level, delta) {
+    const n=BigInt(levelNumber(level))+BigInt(delta);
+    return (n < 35n ? 35n : n).toString();
+  }
+
+  // Difficulty saturates on board density but layouts remain reproducible for
+  // arbitrarily large decimal level IDs (not restricted by IEEE float range).
+  function tuning(level) {
+    const over=BigInt(level)-35n;
+    return {
+      rows: over >= 75n ? 9 : 8,
+      minPerRow: over >= 50n ? 6 : 5,
+      maxPerRow: over >= 125n ? 8 : 7,
+      minUpright: over >= 150n ? 9 : 7,
+      maxUpright: over >= 75n ? 11 : 9,
+      longBusPercent: over >= 60n ? 42 : 26,
+    };
+  }
+
+  function canExit(vehicles, activeIds, parity, id) {
+    const target = vehicles.find(v=>v.id===id);
+    if (!target || !activeIds.has(id)) return false;
+    if (target.type==='up') {
+      return !vehicles.some(v=>activeIds.has(v.id) && v.type==='bus' &&
+         v.x <= target.x && target.x < v.x + 2);
+    }
+    const dir=target.initialDir * (parity === 0 ? 1 : -1);
+    return !vehicles.some(v=>activeIds.has(v.id) && v.id!==id && v.type==='bus' && v.row===target.row &&
+      (dir < 0 ? v.x < target.x : v.x > target.x));
+  }
+
+  function permittedMoves(level, activeIds, parity) {
+    return level.vehicles.filter(v=>canExit(level.vehicles,activeIds,parity,v.id)).map(v=>v.id);
+  }
+
+  function verify(level, { checkQueue=false }={}) {
+    if (!Array.isArray(level.certificate) || level.certificate.length!==level.vehicles.length)
+      return { ok:false, error:'Bad certificate length' };
+    const seen=new Set();
+    const byId=new Map(level.vehicles.map(v=>[v.id,v]));
+    const active=new Set(level.vehicles.map(v=>v.id));
+    let parity=0;
+    for (let turn=0;turn<level.certificate.length;turn++) {
+      const id=level.certificate[turn];
+      if (seen.has(id) || !byId.has(id)) return {ok:false,error:'Repeated/unknown vehicle at turn '+turn};
+      if (!canExit(level.vehicles, active, parity, id)) return {ok:false,error:'Illegal exit on turn '+turn+' for '+id};
+      active.delete(id);seen.add(id);parity^=1;
+    }
+    if(active.size!==0) return {ok:false,error:'Unremoved vehicles'};
+    const capacityByColor=new Map();
+    for(const v of level.vehicles) {
+      if (v.capacity!==(v.type==='up'?24:v.capacity) || ![24,40].includes(v.capacity))
+        return {ok:false,error:'Unsupported capacity'};
+      capacityByColor.set(v.color,(capacityByColor.get(v.color)||0)+v.capacity);
+    }
+    const arrivalsByColor=new Map();
+    for(const color of level.queue) arrivalsByColor.set(color,(arrivalsByColor.get(color)||0)+1);
+    if (capacityByColor.size!==arrivalsByColor.size) return {ok:false,error:'Queue color-set mismatch'};
+    for(const [color, seats] of capacityByColor) {
+      if (arrivalsByColor.get(color)!==seats) return {ok:false,error:'Passenger mismatch for '+color};
+    }
+    let totalBoarded=0;
+    if (checkQueue) {
+      // Fair-loop boarding proof witness: dispatch each vehicle in certificate order,
+      // allow every nonmatching passenger to loop; each bus eventually fills.
+      const queue=level.queue.slice();
+      for (const id of level.certificate) {
+        const v=byId.get(id);
+        let needed=v.capacity, scans=0;
+        const bound=queue.length+needed;
+        while(needed>0 && scans <= bound) {
+          const color=queue.shift();
+          if(color===v.color) {needed--;totalBoarded++;}
+          else queue.push(color);
+          scans++;
+        }
+        if(needed!==0) return {ok:false,error:'Boarding failed for '+id};
+      }
+      if(queue.length!==0) return {ok:false,error:'Unboarded passengers'};
+    }
+    return {ok:true, turns:level.certificate.length, passengers:level.queue.length, queueChecked:checkQueue, boarded:totalBoarded};
+  }
+
+  function generate(levelId) {
+    const id=levelNumber(levelId), params=tuning(id);
+    const rng=createRng('loopline-infinite-v1:'+id);
+    const cols=16, rows=params.rows;
+    const vehicles=[];
+    let idx=0;
+    const rowBuses=Array.from({length:rows},()=>[]);
+    for(let row=0;row<rows;row++) {
+      const slots=rng.shuffle(Array.from({length:8},(_,i)=>i)).slice(0,rng.int(params.minPerRow,params.maxPerRow));
+      slots.sort((a,b)=>a-b);
+      for(const slot of slots) {
+        const v={ id:'B'+(idx++), type:'bus', row, x:slot*2, width:2, initialDir:0,
+          capacity:rng.int(1,100)<=params.longBusPercent?40:24, color:'' };
+        vehicles.push(v);rowBuses[row].push(v);
+      }
+    }
+    const uprightCount=rng.int(params.minUpright,params.maxUpright);
+    const verticalCols=rng.shuffle(Array.from({length:cols},(_,x)=>x)).slice(0,uprightCount).sort((a,b)=>a-b);
+    const upCars=verticalCols.map(x=>({id:'U'+(idx++),type:'up',row:rows,x,width:1,initialDir:0,capacity:24,color:''}));
+    vehicles.push(...upCars);
+
+    // CONSTRUCTIVE CERTIFICATE. At each step remove one outermost horizontal
+    // vehicle or a vertical car with a clear upward column. Assign its *initial*
+    // facing so that it points outward at the scheduled step, after all prior
+    // global flips. Thus the generated sequence is legal by construction.
+    const remainingRows=rowBuses.map(arr=>arr.slice());
+    const pendingUp=upCars.slice();
+    const certificate=[];
+    while(certificate.length<vehicles.length) {
+      const choices=[];
+      for(let row=0;row<rows;row++) {
+        const a=remainingRows[row];
+        if(!a.length) continue;
+        choices.push({vehicle:a[0],side:-1,weight:1});
+        if(a.length>1) choices.push({vehicle:a[a.length-1],side:1,weight:1});
+      }
+      for(const car of pendingUp) {
+        const clear=remainingRows.every(row=>row.every(bus=>!(bus.x <= car.x && car.x < bus.x+2)));
+        if(clear) choices.push({vehicle:car,side:0,weight:0.5});
+      }
+      if(!choices.length) throw new Error('Generator invariant: no move during construction');
+      const weighted=choices.map(choice=>({...choice,weight:choice.weight*(choice.vehicle.type==='up'?1.3:1)}));
+      let roll=rng.float()*weighted.reduce((a,b)=>a+b.weight,0);
+      let chosen=weighted[weighted.length-1];
+      for(const c of weighted){roll-=c.weight;if(roll<=0){chosen=c;break;}}
+      const v=chosen.vehicle;
+      if(v.type==='bus') {
+        v.initialDir=chosen.side*(certificate.length%2===0?1:-1);
+        const row=remainingRows[v.row];
+        row.splice(row.findIndex(x=>x.id===v.id),1);
+      } else {
+        pendingUp.splice(pendingUp.findIndex(x=>x.id===v.id),1);
+      }
+      certificate.push(v.id);
+    }
+    // Each level maps to deterministic but varied vehicle colors. The total
+    // number of passengers of each color is *exactly* the sum of seats.
+    const allColors=rng.shuffle(COLORS.map(c=>c.id));
+    const colorCount=9;
+    for(let i=0;i<vehicles.length;i++) {
+      vehicles[i].color= i<colorCount?allColors[i]:rng.choice(allColors.slice(0,colorCount));
+    }
+    rng.shuffle(vehicles); // rendering order, distinct from certificate
+    const chunks=[];
+    for(const v of vehicles) {
+      let n=v.capacity;
+      while(n>0){const count=Math.min(n,rng.int(5,14));chunks.push({color:v.color,count});n-=count;}
+    }
+    rng.shuffle(chunks);
+    const queue=[];
+    for(const chunk of chunks) for(let n=0;n<chunk.count;n++) queue.push(chunk.color);
+    const generated={level:id,rows,cols,vehicles,queue,certificate,activeBays:5,
+      flavor:['Commuter Rush','Switchback City','The Color Loop','Last Departure','Rush Hour','Double Back'][rng.int(0,5)],
+      checksum:checksum(vehicles)};
+    const validation=verify(generated);
+    if (!validation.ok) throw new Error('Generated level failed verification: '+validation.error);
+    return generated;
+  }
+
+  function checksum(vehicles) {
+    let h=2166136261;
+    const s=vehicles.map(v=>[v.id,v.type,v.row,v.x,v.initialDir,v.capacity,v.color].join(':')).join('|');
+    for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}
+    return (h>>>0).toString(16).padStart(8,'0');
+  }
+
+  // Backtracking solver used for adaptive hints after the player deviates
+  // from the original certificate. It never invents an illegal move.
+  function solveFrom(level, active, parity=0, budget=80000) {
+    const present=new Set(active);
+    const order=new Map(level.certificate.map((id,i)=>[id,i]));
+    const memo=new Set();
+    let nodes=0, exhausted=false;
+    function search(set, p) {
+      if(!set.size)return [];
+      if(++nodes>budget){exhausted=true;return null;}
+      const key=Array.from(set).sort().join(',')+';'+p;
+      if(memo.has(key))return null;
+      const options=permittedMoves(level,set,p).sort((a,b)=>(order.get(a)-order.get(b)));
+      for(const id of options) {
+        set.delete(id);
+        const tail=search(set,p^1);
+        set.add(id);
+        if(tail!==null) return [id,...tail];
+        if(exhausted) break;
+      }
+      memo.add(key);return null;
+    }
+    const path=search(present,parity);
+    return {solvable:!!path,path,exhausted,nodes};
+  }
+
+  return Object.freeze({COLORS,generate,verify,canExit,permittedMoves,solveFrom,levelNumber,bumpLevel});
+});
+</script>
+  <script>/* Loopline Infinite — all gameplay runs locally in the browser. */
+(() => {
+  'use strict';
+  const E=window.LooplineEngine;
+  if(!E)throw new Error('Missing local deterministic level generator');
+  const byId=id=>document.getElementById(id);
+  const palette=Object.fromEntries(E.COLORS.map(c=>[c.id,c.hex]));
+  const STORAGE='loopline-infinite-save-v1';
+  const INFO='loopline-infinite-profile-v1';
+  let level=null, state=null, frameTick=0, toastTimeout=0, hintTimeout=0, speed=1, proof=null, lastSaved=0;
+  const scene=byId('scene'),people=byId('people'),lot=byId('lot');
+  const persons=[];
+
+  function text(id,value){byId(id).textContent=String(value);}
+  function shorten(n){return n.length>11?n.slice(0,5)+'…'+n.slice(-4):n;}
+  function loadStorage(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch{return null}}
+  function store(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+  function notify(message,ms=2300){
+    const el=byId('toast');el.textContent=message;el.classList.add('show');
+    clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('show'),ms);
+  }
+  function modal(icon,title,copy,buttons){
+    byId('levelInput')?.remove();
+    text('modalIcon',icon);text('modalTitle',title);text('modalCopy',copy);
+    const dest=byId('modalButtons');dest.replaceChildren();
+    for(const item of buttons){
+      const b=document.createElement('button');b.textContent=item.text;
+      if(item.secondary)b.className='secondary';
+      b.addEventListener('click',()=>{closeModal();item.onClick()});dest.appendChild(b);
+    }
+    byId('modalOverlay').hidden=false;
+  }
+  function closeModal(){byId('modalOverlay').hidden=true}
+  function copyBays(){return state.bays.map(b=>b?{id:b.id,boarded:b.boarded,leaving:b.leaving,exitAt:b.exitAt||0}:null)}
+  function snapshot(){return {
+    board:Array.from(state.board),bays:copyBays(),queue:state.queue.slice(),
+    parity:state.parity,dispatched:state.dispatched,delivered:state.delivered,
+    activeBays:state.activeBays,moves:state.moves.slice(),totalBoarded:state.totalBoarded
+  }}
+  function restore(s){
+    state.board=new Set(s.board);state.bays=s.bays.map(b=>b?{...b,exitAt:b.leaving?performance.now()+350:0}:null);
+    state.queue=s.queue.slice();state.parity=s.parity;state.dispatched=s.dispatched;
+    state.delivered=s.delivered;state.activeBays=s.activeBays;state.moves=s.moves.slice();state.totalBoarded=s.totalBoarded;
+    state.won=false;state.hint=null;
+  }
+  function save(force=false){
+    if(!state || (!force && Date.now()-lastSaved<850))return;
+    lastSaved=Date.now();
+    store(STORAGE,{version:1,level:level.level,checksum:level.checksum,snapshot:snapshot(),won:state.won,speed});
+    const profile=loadStorage(INFO)||{};profile.lastLevel=level.level;store(INFO,profile);
+  }
+  function loadLevel(id,reset=false){
+    try{ id=E.levelNumber(id); }catch(e){ notify(e.message);return; }
+    level=E.generate(id);
+    proof=E.verify(level,{checkQueue:false});
+    if(!proof.ok)throw new Error('Cannot load invalid level: '+proof.error);
+    state={board:new Set(level.vehicles.map(v=>v.id)),
+      bays:Array(7).fill(null),queue:level.queue.slice(),parity:0,
+      dispatched:0,delivered:0,activeBays:level.activeBays,
+      moves:[],totalBoarded:0,history:[],won:false,hint:null};
+    const old=loadStorage(STORAGE);
+    if(!reset && old?.version===1 && old.level===id && old.checksum===level.checksum && old.snapshot){
+      try{
+        const s=old.snapshot;
+        if(!Array.isArray(s.board)||!Array.isArray(s.queue)||!Array.isArray(s.bays)||s.bays.length!==7)throw Error('Corrupt save');
+        restore(s);state.won=!!old.won;speed=[1,3,6].includes(old.speed)?old.speed:1;
+      }catch{ /* discard invalid save; deterministic fresh board remains */ }
+    }
+    closeModal(); renderEverything(); save(true);
+    notify(`Level ${shorten(id)} • ${level.vehicles.length} vehicles • verified winnable`,2600);
+  }
+  function locateVehicle(id){return level.vehicles.find(v=>v.id===id)}
+  function shade(hex,amount){
+    const c=hex.replace('#','');const rgb=[0,2,4].map(i=>parseInt(c.slice(i,i+2),16));
+    return '#'+rgb.map(n=>Math.max(0,Math.min(255,n+amount)).toString(16).padStart(2,'0')).join('');
+  }
+  function isLegal(id){return E.canExit(level.vehicles,state.board,state.parity,id)}
+  function renderBoard(){
+    const rect=lot.getBoundingClientRect();const colW=rect.width/level.cols;
+    const rowH=28;
+    lot.style.height=(level.rows*rowH+49)+'px';
+    lot.style.backgroundSize=`100% ${rowH+1}px`;
+    const existing=Array.from(lot.querySelectorAll('.vehicle'));existing.forEach(el=>el.remove());
+    for(const v of level.vehicles){
+      if(!state.board.has(v.id))continue;
+      const el=document.createElement('button');
+      el.className='vehicle '+(v.type==='up'?'vertical ':'')+(isLegal(v.id)?'legal':'blocked');
+      if(v.id===state.hint)el.classList.add('suggested');
+      el.dataset.id=v.id;el.style.setProperty('--buscolor',palette[v.color]);
+      el.style.left=(v.x*colW+1)+'px';
+      el.style.width=(v.type==='bus'?colW*2-3:colW-3)+'px';
+      el.style.top=(v.type==='bus'?v.row*rowH+3:level.rows*rowH+2)+'px';
+      el.style.height=(v.type==='bus'?rowH-5:43)+'px';
+      const dir=v.type==='up'?'↑':(v.initialDir*(state.parity? -1:1)<0?'◀':'▶');
+      if(v.type==='up')el.innerHTML=`<span class="arr">${dir}</span><span class="cap">24</span>`;
+      else el.innerHTML=`<span class="arr">${dir}</span><span class="cap">${v.capacity}</span>`;
+      const colorspec=E.COLORS.find(c=>c.id===v.color);
+      el.title=`${colorspec?.name} ${v.type==='up'?'car':'bus'} · ${v.capacity} seats · ${isLegal(v.id)?'Clear exit':'Blocked'}`;
+      el.setAttribute('aria-label',el.title);
+      lot.append(el);
+    }
+  }
+  function renderBays(){
+    const el=byId('bays');el.replaceChildren();
+    for(let i=0;i<7;i++){
+      const bay=state.bays[i];
+      const div=document.createElement('div');
+      div.className='bay '+(i>=state.activeBays?'locked':(bay?'occupied':'empty'))+(bay?.leaving?' ready':'');
+      if(i>=state.activeBays){
+        div.innerHTML='<span class="plus">+</span><span class="plus-label">OPEN BAY</span>';
+        div.title='Open an extra loading bay';div.setAttribute('role','button');div.tabIndex=0;
+        div.addEventListener('click',openBay);
+        div.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();openBay()}});
+      } else if(!bay){div.innerHTML='<span class="plus" style="color:#c4e9ff">·</span><span class="plus-label">FREE</span>';}
+      else {
+        const v=locateVehicle(bay.id);
+        div.innerHTML=`<div class="bay-bus" style="--buscolor:${palette[v.color]}"></div><span class="bay-count">${bay.boarded} / ${v.capacity}</span><span class="bay-size">${bay.leaving?'DEPARTING':'LOADING'}</span>`;
+      }
+      el.append(div);
+    }
+    text('baysInfo',`${state.activeBays} / 7 OPEN`);
+  }
+  function renderNumbers(){
+    text('levelPicker',shorten(level.level));
+    text('busesRemaining',state.board.size);
+    text('waiting',state.queue.length.toLocaleString());
+    text('boarded',state.totalBoarded.toLocaleString());
+    text('movesLabel',state.dispatched);
+    text('directionHint',state.parity?'↶':'↷');
+    text('seed',level.checksum);
+    text('speedLabel',`SPEED ${speed}×`);
+    byId('undo').disabled=!state.history.length;
+    byId('prevLevel').disabled=level.level==='35';
+  }
+  function renderEverything(){renderBoard();renderBays();renderNumbers();paintPeople()}
+  function initPeople(){
+    for(let i=0;i<104;i++){const p=document.createElement('span');p.className='person';people.append(p);persons.push(p);}
+  }
+  function paintPeople(){
+    if(!level||!state)return;
+    const width=scene.clientWidth;
+    const count=state.queue.length;
+    const offset=frameTick*0.0075;
+    const rx=width*0.51,ry=109,cy=18,cx=width/2;
+    for(let i=0;i<persons.length;i++){
+      const p=persons[i];
+      if(!count){p.style.opacity='0';continue;}
+      const a=Math.PI*2*(i/persons.length)+offset;
+      const qIdx=Math.floor((i/persons.length)*count+(frameTick*3))%count;
+      const color=state.queue[qIdx];
+      const row=(i%4)-1.5;
+      const x=cx+Math.cos(a)*(rx+row*5)-4;
+      const y=cy+Math.sin(a)*(ry+row*3)-4;
+      p.style.opacity=(y<-10||y>190)?'0':'.95';
+      p.style.background=palette[color]||'#fff';
+      p.style.transform=`translate(${x}px, ${y}px)`;
+    }
+  }
+  function renderLoading(){renderBays();renderNumbers();if(!(frameTick%2))paintPeople()}
+  function dispatch(id){
+    if(state.won || !state.board.has(id))return false;
+    if(!isLegal(id)){
+      notify('Blocked! That vehicle needs a clear exit in the direction it faces.');
+      const btn=lot.querySelector(`[data-id="${id}"]`);
+      btn?.classList.add('shake');setTimeout(()=>btn?.classList.remove('shake'),300);
+      return false;
+    }
+    const bayIndex=state.bays.findIndex((bay,i)=>i<state.activeBays && !bay);
+    if(bayIndex<0){notify('All loading bays are occupied. Let a bus fill, or open an extra bay.');return false;}
+    state.history.push(snapshot());if(state.history.length>30)state.history.shift();
+    state.board.delete(id);
+    state.bays[bayIndex]={id,boarded:0,leaving:false,exitAt:0};
+    state.parity^=1; state.dispatched++;state.moves.push(id);state.hint=null;
+    const v=locateVehicle(id);
+    text('helpText',`${E.COLORS.find(c=>c.id===v.color)?.name} ${v.type==='up'?'car':'bus'} dispatched · remaining buses turned around!`);
+    renderEverything();save(true);return true;
+  }
+  function openBay(){
+    if(state.activeBays>=7){notify('All loading bays are already open.');return;}
+    state.history.push(snapshot());if(state.history.length>30)state.history.shift();
+    state.activeBays++;
+    renderEverything();save(true);notify('Extra loading bay opened.');
+  }
+  function undo(){
+    if(!state.history.length){notify('No move to undo.');return;}
+    const s=state.history.pop();restore(s);renderEverything();save(true);notify('Move undone, including passenger boarding.');
+  }
+  function hint(){
+    if(state.won)return;
+    if(!state.bays.some((b,i)=>i<state.activeBays&&!b)){
+      notify('Wait for a bus to finish boarding, or open a loading bay.');return;
+    }
+    let candidate=null;
+    const isPrefix=state.moves.every((id,i)=>level.certificate[i]===id);
+    if(isPrefix){candidate=level.certificate[state.moves.length];}
+    if(!candidate || !state.board.has(candidate) || !isLegal(candidate)){
+      const result=E.solveFrom(level,state.board,state.parity,120000);
+      if(result.solvable)candidate=result.path[0];
+      else{
+        notify(result.exhausted?'Could not find a route quickly. Undo a move for the certified path.':'No winning path remains. Use Undo or Restart.',3300);
+        return;
+      }
+    }
+    if(!candidate){notify('No buses left in the yard; let the last passengers board.');return;}
+    state.hint=candidate;renderBoard();
+    clearTimeout(hintTimeout);hintTimeout=setTimeout(()=>{if(state?.hint===candidate){state.hint=null;renderBoard()}},2500);
+    const v=locateVehicle(candidate);notify(`Hint: send the highlighted ${E.COLORS.find(c=>c.id===v.color)?.name} ${v.type==='up'?'car':'bus'}.`);
+  }
+  function restart(){
+    modal('🔄','Restart this level?',`The layout and its solution stay the same. You can also Undo the most recent ${state.history.length} moves.`,[
+      {text:'Cancel',secondary:true,onClick:()=>{}},
+      {text:'Restart',onClick:()=>loadLevel(level.level,true)}
+    ]);
+  }
+  function showPicker(){
+    modal('♾️','Jump to any level','Every Level 35+ is built from a deterministic seed and checked for a winning route.',[
+      {text:'Cancel',secondary:true,onClick:()=>{}},
+      {text:'Load level',onClick:()=>loadLevel(document.getElementById('levelInput')?.value||level.level,true)}
+    ]);
+    const p=byId('modalCopy');
+    const inp=document.createElement('input');inp.id='levelInput';inp.inputMode='numeric';inp.autocomplete='off';inp.value=level.level;
+    inp.setAttribute('aria-label','Level number, 35 or higher');p.insertAdjacentElement('afterend',inp);
+    inp.addEventListener('keydown',ev=>{if(ev.key==='Enter'){const value=inp.value;closeModal();loadLevel(value,true);}});
+    setTimeout(()=>{inp.focus();inp.select()},20);
+  }
+  function changeLevel(delta){loadLevel(E.bumpLevel(level.level,delta),false)}
+  function complete(){
+    if(state.won)return; state.won=true;
+    const profile=loadStorage(INFO)||{};
+    if(!profile.highestCompleted || BigInt(level.level)>BigInt(profile.highestCompleted))profile.highestCompleted=level.level;
+    profile.lastLevel=level.level;store(INFO,profile);save(true);
+    modal('🏆','Level '+shorten(level.level)+' cleared!',
+      `${state.delivered} vehicles dispatched. ${state.totalBoarded.toLocaleString()} passengers delivered. Your next puzzle has already been generated from code.`,[
+      {text:'Replay',secondary:true,onClick:()=>loadLevel(level.level,true)},
+      {text:'NEXT LEVEL →',onClick:()=>changeLevel(1)}
+    ]);
+  }
+  function boardingTick(){
+    if(!level||!state||state.won || !byId('modalOverlay').hidden)return;
+    frameTick++;
+    const now=performance.now();
+    let changed=false;
+    // Process only passengers who physically reach the gate; others loop.
+    // The bounded batch models walking speed, not teleporting from the queue.
+    const steps=Math.min(state.queue.length,6*speed);
+    for(let i=0;i<steps;i++){
+      const color=state.queue.shift();
+      const bay=state.bays.find((b,j)=>j<state.activeBays && b && !b.leaving &&
+        locateVehicle(b.id).color===color);
+      if(bay){
+        bay.boarded++;state.totalBoarded++;changed=true;
+        const v=locateVehicle(bay.id);
+        if(bay.boarded>=v.capacity){bay.leaving=true;bay.exitAt=now+420;}
+      } else state.queue.push(color);
+    }
+    for(let i=0;i<state.bays.length;i++){
+      const bay=state.bays[i];
+      if(bay?.leaving && now>=bay.exitAt){
+        state.bays[i]=null;state.delivered++;changed=true;
+      }
+    }
+    if(changed || frameTick%3===0)renderLoading();
+    else if(frameTick%2===0)paintPeople();
+    if(changed)save();
+    if(!state.board.size && state.bays.every(b=>!b) && !state.queue.length)complete();
+  }
+  function bindUI(){
+    lot.addEventListener('click',ev=>{const target=ev.target.closest('.vehicle');if(target)dispatch(target.dataset.id)});
+    byId('undo').addEventListener('click',undo);
+    byId('hint').addEventListener('click',hint);
+    byId('restart').addEventListener('click',restart);
+    byId('speed').addEventListener('click',()=>{speed=speed===1?3:speed===3?6:1;renderNumbers();save(true);notify('Passenger speed '+speed+'×')});
+    byId('prevLevel').addEventListener('click',()=>changeLevel(-1));
+    byId('nextLevel').addEventListener('click',()=>changeLevel(1));
+    byId('levelPicker').addEventListener('click',showPicker);
+    byId('modalOverlay').addEventListener('click',e=>{if(e.target===byId('modalOverlay'))closeModal()});
+    window.addEventListener('resize',()=>{if(state){renderBoard();paintPeople()}});
+    window.addEventListener('pagehide',()=>save(true));
+    window.addEventListener('keydown',ev=>{
+      if(ev.key==='Escape')closeModal();
+      if(ev.key.toLowerCase()==='h'&&byId('modalOverlay').hidden)hint();
+      if((ev.ctrlKey||ev.metaKey)&&ev.key.toLowerCase()==='z')undo();
+    });
+  }
+  initPeople();bindUI();
+  const profile=loadStorage(INFO)||{};
+  const saved=loadStorage(STORAGE);
+  const requested=new URLSearchParams(location.search).get('level');
+  loadLevel(requested||saved?.level||profile.lastLevel||'35',false);
+  setInterval(boardingTick,110);
+  // Purely local inspection hooks for repeatable automated QA.
+  window.__loopline={
+    get level(){return level},
+    get state(){return state},
+    dispatch,undo,hint,restart:()=>loadLevel(level.level,true),
+    load:loadLevel,
+    setSpeed:n=>{if([1,3,6].includes(n)){speed=n;renderNumbers()}},
+    tick:boardingTick,
+    finishCertificate(){
+      // Tests only: reproduce the serialized certified route, force each bus
+      // to finish after gate passes, and run until all seats are filled.
+      for(const id of level.certificate){
+        if(!state.board.has(id))continue;
+        let tries=0;
+        while(state.bays.slice(0,state.activeBays).every(Boolean)&&tries++<10000)boardingTick();
+        if(!dispatch(id))return false;
+        tries=0;
+        // Board by actual queue passes. Skip only the departure animation delay.
+        while(state.bays.some(b=>b?.id===id)&&tries++<10000){
+          boardingTick();
+          const bay=state.bays.find(b=>b?.id===id);
+          if(bay?.leaving){bay.exitAt=performance.now()-1;boardingTick();}
+        }
+      }
+      return !state.board.size;
+    }
+  };
+})();
+</script>
+</body>
+</html>
